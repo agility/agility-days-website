@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
-import { graphql, StaticQuery } from "gatsby"
 
+export default class InfoPanel extends Component {
 
-export default class Jumbotron extends Component {
+    renderHtmlContent(html) {
+        return { __html: html };
+    }
+
     render() {    
         return (
             <section id="sectionAbout" className="body-section section-about">
                 <div className="container">
                     <h3>
-                        <i className="icon-agility-triangle"></i>
-                        <span>{this.props.item.fields.title}</span>
+                        <i className={this.props.item.fields.titleIcon}></i>
+                        <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.title)}></span>
                     </h3>
 
                     <div className="about-event">
                         <div className="event-info">
                             <div className="content-panel">
-                                {this.props.item.fields.primaryContent}
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.primaryContent)}></div>
                             
                                 <div className="cta">
-                                    <button className="btn" href={this.props.item.fields.primaryButton.href} title={this.props.item.fields.primaryButton.title}>{this.props.item.fields.primaryButton.title}</button>
-                                    
+                                    <button className="btn" href={this.props.item.fields.primaryButton.href} title={this.props.item.fields.primaryButton.text}>{this.props.item.fields.primaryButton.text}</button>
+
                                     <div className="date-location">
                                         <i className={this.props.item.fields.subContentIcon}></i>
-                                        <p>
-                                            {this.props.item.fields.subContent}
-                                        </p>
+                                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.subContent)}></div>
                                     </div>
                                 </div>
                             </div>

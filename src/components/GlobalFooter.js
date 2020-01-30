@@ -11,7 +11,8 @@ export default props => (
                   copyrightText,
                   logo {
                       url
-                  }
+                  },
+                  socialLinks
                 }
               }
             }
@@ -29,11 +30,16 @@ export default props => (
 )
 
 class GlobalFooter extends Component {
+    renderHtmlContent(html) {
+        return { __html: html };
+    }
     render() {
         console.log('footer', this.props);
         return (
-            <footer className="footer">
+            <footer className="section-footer">
                 <div className="container">
+                    <p className="brand"><img src={this.props.item.myFields.logo.url} alt="Agility CMS" /></p>
+                    <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.socialLinks)}></div>
                     <p>{this.props.item.myFields.copyrightText}</p>
                 </div>
             </footer>
