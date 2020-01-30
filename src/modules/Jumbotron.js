@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { graphql, StaticQuery } from "gatsby"
-
-import './Jumbotron.css'
 
 export default class Jumbotron extends Component {
     render() {    
         return (
-            <section className="jumbotron">
-                <h1>{this.props.item.fields.title}</h1>
-                <h2>{this.props.item.fields.subTitle}</h2>
+            <section id="sectionContact" className="body-section section-jumbotron">
+                <div class="container">
+                    <h5>{this.props.item.fields.title}</h5>
+
+                    <p>{this.props.item.fields.subTitle}</p>
+                    <button className="btn" href={this.props.item.fields.primaryButton.href} title={this.props.item.fields.primaryButton.title}>
+                        {this.props.item.fields.primaryButton.text}
+                    </button>
+                </div>
             </section>
         );
     }

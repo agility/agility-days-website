@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
-import './AgilityPage.css'
+import '../assets/css/stylesheet.css'
 
 //You need to pass-down the available modules to the app because they will be rendered dynamically
 import modules from '../modules/_allModules.js'
 import pageTemplates from './_allPageTemplates.js'
 
+import SEO from '../components/SEO.js'
 import GlobalHeader from '../components/GlobalHeader.js'
+import GlobalFooter from '../components/GlobalFooter.js'
 
 
 export default class AgilityPage extends Component {
@@ -20,8 +22,13 @@ export default class AgilityPage extends Component {
 
         return (
             <div id="inner-body">
+                <SEO />
                 <GlobalHeader />
-                <PageTemplateComponentToRender {...propsForPageTemplate} />
+                <div className="page-body">
+                    <PageTemplateComponentToRender {...propsForPageTemplate} />
+                </div>
+
+                <GlobalFooter />
             </div>
         );
     }
