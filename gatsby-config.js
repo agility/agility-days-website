@@ -22,7 +22,7 @@ module.exports = {
         apiKey: agilityConfig.accessToken, //your Agility Content Fetch API Key
         isPreview: agilityConfig.isPreview, //set this to true if you are using the preview API Key
         debug: true,
-        sharedContent: ["posts", "speakers", "schedule", "globalheader", "globalfooter"], //a list of reference names you want to include in your GraphQL store
+        sharedContent: ["speakers", "schedule", "globalheader", "globalfooter"], //a list of reference names you want to include in your GraphQL store
         languages: [{
           // The name of the language code
           name: "English",
