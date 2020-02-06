@@ -12,6 +12,7 @@ export default props => (
                     name
                     companyName
                     jobTitle
+                    biography
                     headshot {
                         url
                     }
@@ -37,6 +38,26 @@ export default props => (
 
 class SpeakersList extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentSpeaker: props.speakers[0]
+        }
+    }
+
+    renderHtmlContent(html) {
+        return { __html: html };
+    }
+
+    selectSpeaker(speaker) {
+        console.log(speaker);
+
+        this.setState(state => ({
+            currentSpeaker: speaker
+        }));
+
+    }
+
     renderSpeakers() {
         console.log('speaker', this.props);
 
@@ -46,11 +67,13 @@ class SpeakersList extends Component {
 
             this.props.speakers.forEach(speaker => {
                 speakers.push(
-                    <li key={speaker.contentID}>
+                    <li key={speaker.contentID} onClick={(e) => this.selectSpeaker(speaker, e)}>
                         {speaker.myFields.headshot && 
                             <img src={speaker.myFields.headshot.url} alt={speaker.myFields.name} />
                         }
-                        <p>{speaker.myFields.name}</p>
+                        <p>
+                            {speaker.myFields.name}
+                        </p>
                         <p className="title">{speaker.myFields.companyName}</p>
                     </li>
                 )
@@ -72,10 +95,10 @@ class SpeakersList extends Component {
                     <div className="all-speakers">
                         <div className="speaker-info">
                             <div class="inner">
-                            <h5>Mike Johnson</h5>
-                            <p className="title">VP of Technology at Agility CMS</p>
+                            <h5>{this.state.currentSpeaker.myFields.name}</h5>
+                            <p className="title">{this.state.currentSpeaker.myFields.jobTitle} at {this.state.currentSpeaker.myFields.companyName}</p>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer consequat mauris pellentesque lacinia viverra. Proin sollicitudin posuere auctor. Ut eu dignissim urna, at congue nunc. Pellentesque egestas, velit pellentesque egestas dictum, lectus sem gravida augue, consectetur congue lacus erat vel leo. Sed sed aliquet urna, sit amet suscipit elit. Aliquam ut cursus risus. </p>
+                            <p dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.myFields.biography)}></p>
 
                             <button className="btn" title="Get Tickets">Get Tickets</button>
                             </div>
@@ -83,12 +106,6 @@ class SpeakersList extends Component {
 
                         <div className="speaker-list">
                             <ul>
-                                {/* <li>
-                                    <img src="https://static.agilitycms.com/agility-days-2020/speakers/mike-johnson.jpg" alt="Mike Johnson" />
-                                    <p>Mike Johnson</p>
-                                    <p className="title">Agility CMS</p>
-                                </li> */}
-
                                 {this.renderSpeakers()}
                             </ul>
                         </div>
