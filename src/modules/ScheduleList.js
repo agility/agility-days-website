@@ -44,54 +44,60 @@ export default props => (
 
 class ScheduleList extends Component {
 
-    renderSchedule() {
-        console.log('schedule', this.props);
+  renderHtmlContent(html) {
+      return { __html: html };
+  }
 
-        if (this.props.schedule != null) {
+  renderSchedule() {
+      console.log('schedule', this.props);
 
-            let schedule = [];
+      if (this.props.schedule != null) {
 
-            this.props.schedule.forEach(eventSession => {
-              schedule.push(
-                <div className="content-panel schedule-item">
-                  <div className="item-info">
-                    <div className="image">
-                      <img src={eventSession.myFields.speaker.fields.headshot.url} alt={eventSession.myFields.speaker.fields.name} />
-                      <p>
-                        <strong>{eventSession.myFields.speaker.fields.name}</strong><br />
-                        {eventSession.myFields.speaker.fields.companyName}
-                      </p>
-                    </div>
-                    
-          
-                    <div className="info">
-                      <p className="time"><i class="fa fa-clock"></i> {eventSession.myFields.timeRange}</p>
-          
-                      <p className="title">{eventSession.myFields.topicTitle}</p>
-          
-                      <p>{eventSession.myFields.topicDescription}</p>
-                    </div>
+          let schedule = [];
+
+          this.props.schedule.forEach(eventSession => {
+            schedule.push(
+              <div className="content-panel schedule-item">
+                <div className="item-info">
+                  <div className="image">
+                    <img src={eventSession.myFields.speaker.fields.headshot.url} alt={eventSession.myFields.speaker.fields.name} />
+                    <p>
+                      <strong>{eventSession.myFields.speaker.fields.name}</strong>
+                      {eventSession.myFields.speaker.fields.companyName}
+                    </p>
+                  </div>
+                  
+        
+                  <div className="info">
+                    <p className="time"><i className="fa fa-clock"></i> {eventSession.myFields.timeRange}</p>
+        
+                    <p className="title">{eventSession.myFields.topicTitle}</p>
+        
+                    <p dangerouslySetInnerHTML={this.renderHtmlContent(eventSession.myFields.topicDescription)}></p>
                   </div>
                 </div>
-              )
-            })
+              </div>
+            )
+          })
 
-            return schedule;
-        }
-    }
+          return schedule;
+      }
+  }
 
-    render() {    
-        return (
-            <section id="sectionSchedule" className="body-section section-schedule">
-              <div class="container">
+  render() {    
+      return (
+          <section id="sectionSchedule" className="body-section section-schedule">
+            <div className="container">
+              <div className="row">
                 <h3>
-                  <i class="fad fa-clipboard-list"></i>
-                  <span>Event <strong>Schedule</strong></span>
+                    <i className={this.props.item.fields.titleIcon}></i>
+                    <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.title)}></span>
                 </h3>
 
                 {this.renderSchedule()}
-               </div>
-            </section>
-        );
-    }
+              </div>
+            </div>
+          </section>
+      );
+  }
 }

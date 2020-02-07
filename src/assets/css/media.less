@@ -1,0 +1,186 @@
+//main: stylesheet.less
+
+/* =================================
+  Media Queries
+==================================== */
+
+
+/* Extra Large Break */
+@media (max-width: 1199px) {
+  .row {
+    margin: 0 10px;
+  }
+}
+
+/* Large Break */
+@media (max-width: 900px) {
+
+}
+
+
+/* Medium Break */
+@media (max-width: 700px) {
+
+  .section-header {
+    background-size: cover;
+    padding-bottom: 100px;
+    
+    .brand-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 30px 0 60px 0;
+
+      flex-wrap: wrap;
+  
+      .logo {
+        margin: 0 0 20px 0;
+        img {
+          min-width: 200px;
+        }
+      }
+      
+      .global-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+  
+        ul {
+          width: 100%;
+          li {
+            margin-right: 15px;
+
+            &:last-of-type { margin-right: 0; }
+          }
+        }
+  
+        .btn {
+          display: none;
+        }
+      }
+    }
+  
+    .registration-cta {
+      display: flex;
+      justify-content: space-around;
+      margin: 0 2px;
+  
+      .content {
+  
+        h1 {
+          font-size: 3em;
+  
+          span {
+            font-size: 1.5em;
+          }
+        }
+  
+        h2 {
+          font-size: 1.5em;
+        }
+  
+        .details {
+          font-size: 1.2em;
+        }
+  
+        .btn {
+          font-size: 1.25em;
+        }
+      }
+    }
+  }
+
+  .section-about {
+    .about-event {
+      flex-wrap: wrap;
+    
+      .event-info {
+        width: 100%;
+        order: 2;
+        
+        .cta {
+          flex-wrap: wrap;
+    
+          button { 
+            margin-right: 0; 
+            order: 2;
+            width: 100%;
+          }
+
+          .date-location {
+            width: 100%;
+            order: 1;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    
+      .event-media {
+        width: 100%;
+        order: 1;
+      }
+    }
+  }
+
+  .section-speakers {
+    padding: 70px 0;
+  
+    h3 {
+      margin-bottom: 40px;
+    }
+  
+    .all-speakers {
+      flex-wrap: wrap;
+  
+      .speaker-info {
+        width: 100%;
+        margin-bottom: 20px;
+  
+        .inner {
+        }
+        
+      }
+  
+      .speaker-list {
+        width: 100%;
+      }
+    }
+  }
+
+}
+
+/* Small Break */
+@media (max-width: 500px) {
+  .section-schedule {
+    .schedule-item {
+      .item-info {
+        flex-wrap: wrap;
+        text-align: center;
+  
+        .image {
+          width: 100%;
+          margin: 15px 0 0 0;
+  
+          p {
+            font-size: 1.25em;
+            margin: 10px 0 20px 0;
+  
+            strong {
+              font-size: 1.25em;
+              line-height: 1em;
+            }
+          }
+  
+          img {
+            width: 200px;
+            border-radius: 200px;
+          }
+        }
+  
+      }
+    }
+  }
+
+}

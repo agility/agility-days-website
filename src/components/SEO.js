@@ -45,6 +45,7 @@ function SEO({ description, lang, meta, title }) {
       ].concat(meta)}
     >
       <script src="https://kit.fontawesome.com/83ff98eb82.js" crossorigin="anonymous"></script>
+      <script src="https://www.eventbrite.ca/static/widgets/eb_widgets.js"></script>
     </Helmet>
   )
 }
@@ -62,5 +63,7 @@ SEO.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
+
+
 
 export default SEO

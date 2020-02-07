@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ScrollUpButton from "react-scroll-up-button";
 
 import '../assets/css/stylesheet.css'
 
@@ -23,6 +24,7 @@ export default class AgilityPage extends Component {
         return (
             <div id="inner-body">
                 <SEO />
+                <ScrollUpButton />
                 <GlobalHeader />
                 <div className="page-body">
                     <PageTemplateComponentToRender {...propsForPageTemplate} />
