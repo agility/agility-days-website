@@ -29,25 +29,11 @@ export default props => (
                 }
               }
             }
-            allAgilitySitemapNode {
-              nodes {
-                pageID
-                path
-                menuText
-                visible {
-                  menu
-                }
-              }
-            }
           }          
         `}
         render={queryData => {
             const viewModel = {
-                item: queryData.allAgilityContentGlobalHeader.nodes[0],
-                menuLinks: queryData.allAgilitySitemapNode.nodes.filter(sitemapNode => {
-                    //only return top level links
-                    return sitemapNode.path.split('/').length == 2
-                })
+                item: queryData.allAgilityContentGlobalHeader.nodes[0]
             }
             return (
                 <GlobalHeader {...viewModel} />
@@ -71,74 +57,62 @@ class GlobalHeader extends Component {
         return (
 
             <header className="section-header" style={headerStyle}>
-                <div class="container">
-                    <div className="brand-nav">
-                    <Link
-                    to="/"
-                    title={this.props.item.myFields.siteName}
-                    className="logo"
-                    >
-                        <img src={this.props.item.myFields.logo.url} alt={this.props.item.myFields.siteName} />
-                    </Link>
+                <div className="container">
+                    <div className="row">
 
-                    <nav className="global-nav">
-                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.siteNavigation)}></div>
-
-                        <Link
+                        <div className="brand-nav">
+                            <Link
                             to="/"
-                            title=""
-                            className="btn"
-                        >
-                            Buy Tickets
-                        </Link>
+                            title={this.props.item.myFields.siteName}
+                            className="logo"
+                            >
+                                <img src={this.props.item.myFields.logo.url} alt={this.props.item.myFields.siteName} />
+                            </Link>
 
-                    </nav>
-                </div>
+                            <nav className="global-nav">
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.siteNavigation)}></div>
 
-                    <div className="registration-cta">
-                    <div className="content">
-                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.primaryContent)}></div>
+                                <button
+                                    id="eventbrite-widget-modal-trigger-91225037543"
+                                    className="btn"
+                                >
+                                    Buy Tickets
+                                </button>
 
-                        <Link
-                            to={this.props.item.myFields.primaryButton.href}
-                            title={this.props.item.myFields.primaryButton.text}
-                            className="btn btn-sec"
-                        >
-                            {this.props.item.myFields.primaryButton.text}
-                        </Link>
-                    </div>
+                            </nav>
+                        </div>
 
-                    <div className="form">
-                        <div class="inner-form">
-                            <h5>Register Now</h5>
-                            <form>
-                            <div className="form-group">
-                                <input type="text" placeholder="Your Name" />
+                        <div className="registration-cta">
+                            <div className="content">
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.primaryContent)}></div>
+
+                                <button class="btn" id="example-widget-trigger" type="button">{this.props.item.myFields.primaryButton.text}</button>
                             </div>
-
-                            <div className="form-group">
-                                <input type="text" placeholder="Email Address" />
-                            </div>
-
-                            <div className="form-group">
-                                <input type="text" placeholder="Phone Number" />
-                            </div>
-
-                            <div className="form-group">
-                                <select>
-                                <option disabled selected>How Many Tickets?</option>
-                                <option>1</option>
-                                </select>
-                            </div>
-
-                            <button class="btn" title="Register Now">Register Now</button>
-                            </form>
                         </div>
                     </div>
-                </div>
+
                 </div>
             </header>
         );
+    }
+
+    componentDidMount() {
+
+        setTimeout(
+            function() {
+                var exampleCallback = function() {
+                    console.log('Order complete!');
+                };
+        
+                window.EBWidgets.createWidget({
+                    widgetType: 'checkout',
+                    eventId: '91225037543',
+                    modal: true,
+                    modalTriggerElementId: 'eventbrite-widget-modal-trigger-91225037543',
+                    onOrderComplete: exampleCallback
+                });
+            }, 1000
+        )
     }
 }
 

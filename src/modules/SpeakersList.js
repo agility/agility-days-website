@@ -86,28 +86,30 @@ class SpeakersList extends Component {
     render() {    
         return (
             <section id="sectionSpeakers" className="body-section section-speakers">
-                <div class="container">
-                    <h3>
-                        <i class="fad fa-microphone-stand"></i>
-                        <span>Meet Oursdads <strong>Speakers</strong></span>
-                    </h3>
+                <div className="container">
+                    <div className="row">
+                        <h3>
+                            <i className={this.props.item.fields.titleIcon}></i>
+                            <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.title)}></span>
+                        </h3>
 
-                    <div className="all-speakers">
-                        <div className="speaker-info">
-                            <div class="inner">
-                            <h5>{this.state.currentSpeaker.myFields.name}</h5>
-                            <p className="title">{this.state.currentSpeaker.myFields.jobTitle} at {this.state.currentSpeaker.myFields.companyName}</p>
+                        <div className="all-speakers">
+                            <div className="speaker-info">
+                                <div className="inner">
+                                <h5>{this.state.currentSpeaker.myFields.name}</h5>
+                                <p className="title">{this.state.currentSpeaker.myFields.jobTitle} at {this.state.currentSpeaker.myFields.companyName}</p>
 
-                            <p dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.myFields.biography)}></p>
+                                <p dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.myFields.biography)}></p>
 
-                            <button className="btn" title="Get Tickets">Get Tickets</button>
+                                <button className="btn" title="Get Tickets">Get Tickets</button>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="speaker-list">
-                            <ul>
-                                {this.renderSpeakers()}
-                            </ul>
+                            <div className="speaker-list">
+                                <ul>
+                                    {this.renderSpeakers()}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

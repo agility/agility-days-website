@@ -11,14 +11,16 @@ export default class Jumbotron extends Component {
         };
         return (
             <section id="sectionContact" className="body-section section-jumbotron" style={jumbotronStyle}>
-                <div class="container">
-                    <h5>{this.props.item.fields.title}</h5>
+                <div className="container">
+                    <div className="row">
+                        <h5>{this.props.item.fields.title}</h5>
 
-                    <p dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.primaryContent)}></p>
-                    
-                    <button className="btn" href={this.props.item.fields.primaryButton.href} title={this.props.item.fields.primaryButton.title}>
-                        {this.props.item.fields.primaryButton.text}
-                    </button>
+                        <p dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.primaryContent)}></p>
+                        
+                        <button className="btn" href={this.props.item.fields.primaryButton.href} title={this.props.item.fields.primaryButton.title}>
+                            {this.props.item.fields.primaryButton.text}
+                        </button>
+                    </div>
                 </div>
             </section>
         );

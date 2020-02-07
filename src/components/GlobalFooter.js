@@ -38,9 +38,11 @@ class GlobalFooter extends Component {
         return (
             <footer className="section-footer">
                 <div className="container">
-                    <p className="brand"><img src={this.props.item.myFields.logo.url} alt="Agility CMS" /></p>
-                    <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.socialLinks)}></div>
-                    <p>{this.props.item.myFields.copyrightText}</p>
+                    <div className="row">
+                        <p className="brand"><img src={this.props.item.myFields.logo.url} alt="Agility CMS" /></p>
+                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.socialLinks)}></div>
+                        <p>{this.props.item.myFields.copyrightText}</p>
+                    </div>
                 </div>
             </footer>
         );
