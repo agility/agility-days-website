@@ -73,7 +73,7 @@ class GlobalHeader extends Component {
                                 <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.siteNavigation)}></div>
 
                                 <button
-                                    id="eventbrite-widget-modal-trigger-91225037543"
+                                    id="eventbrite-widget-modal-trigger-79568644959"
                                     className="btn"
                                 >
                                     Buy Tickets
@@ -86,7 +86,7 @@ class GlobalHeader extends Component {
                             <div className="content">
                                 <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.primaryContent)}></div>
 
-                                <button class="btn" id="example-widget-trigger" type="button">{this.props.item.myFields.primaryButton.text}</button>
+                                <button class="btn" id="eventbrite-widget-modal-trigger-79568644959">{this.props.item.myFields.primaryButton.text}</button>
                             </div>
                         </div>
                     </div>
