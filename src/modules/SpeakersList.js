@@ -89,7 +89,7 @@ class SpeakersList extends Component {
                 <div class="container">
                     <h3>
                         <i class="fad fa-microphone-stand"></i>
-                        <span>Meet Our <strong>Speakers</strong></span>
+                        <span>Meet Oursdads <strong>Speakers</strong></span>
                     </h3>
 
                     <div className="all-speakers">
