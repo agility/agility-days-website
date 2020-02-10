@@ -98,7 +98,7 @@ class ScheduleList extends Component {
       
                   <p className="title">{eventSession.myFields.topicTitle}</p>
       
-                  <p dangerouslySetInnerHTML={this.renderHtmlContent(eventSession.myFields.topicDescription)}></p>
+                  <div dangerouslySetInnerHTML={this.renderHtmlContent(eventSession.myFields.topicDescription)}></div>
                 </div>
 
               </div>
