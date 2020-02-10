@@ -33,7 +33,9 @@ export default class InfoPanel extends Component {
                             </div>
 
                             <div className="event-media">
-                                <div><img src={this.props.item.fields.primaryImage.url} /></div>
+                                { this.props.item.fields.primaryImage.url && 
+                                    <div><img src={this.props.item.fields.primaryImage.url} /></div>
+                                }
                             </div>
                         </div>
                     </div>
