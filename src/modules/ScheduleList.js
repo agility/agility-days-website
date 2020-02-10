@@ -6,21 +6,27 @@ export default props => (
     <StaticQuery
         query = {graphql `
           query ScheduleQuery {
-            allAgilityContentEventSession {
-              nodes {
-                myFields {
-                  timeRange
-                  topicDescription
-                  topicTitle
-                  speaker {
-                    fields {
-                      companyName
-                      headshot {
-                        url
+            allAgilityContentEventSession(sort: {fields: myFields___sessionStartTime, order: ASC}) {
+              group(field: myFields___sessionDay) {
+                nodes {
+                  id
+                  myFields {
+                    timeRange
+                    sessionDay
+                    topicDescription
+                    topicTitle
+                    speaker {
+                      fields {
+                        companyName
+                        headshot {
+                          url
+                        }
+                        jobTitle
+                        name
                       }
-                      jobTitle
-                      name
                     }
+                    sessionStartTime
+                    sessionEndTime
                   }
                 }
               }
@@ -28,12 +34,9 @@ export default props => (
           }                         
         `}
         render={queryData =>  {
-
-            let schedule = [];
-
             const viewModel = {
                 item: props.item,
-                schedule: queryData.allAgilityContentEventSession.nodes
+                scheduleGroup: queryData.allAgilityContentEventSession.group
             }
             return(
                 <ScheduleList {...viewModel}/>  
@@ -48,39 +51,86 @@ class ScheduleList extends Component {
       return { __html: html };
   }
 
-  renderSchedule() {
+  renderSchedule(scheduleGroup) {
+    console.log('schedule', this.props);
+
+    function addZero(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+
+    function parseTime(timeStamp) {
+      let time = new Date(timeStamp);
+
+      var hours = addZero(time.getHours());
+      var AmOrPm = hours >= 12 ? 'pm' : 'am';
+      hours = (hours % 12) || 12;
+      var minutes = addZero(time.getMinutes());
+      var finalTime = hours + ":" + minutes + "" + AmOrPm + " ";
+      return finalTime
+    }
+
+    if (scheduleGroup && scheduleGroup.nodes) {
+
+        let schedule = [];
+
+        scheduleGroup.nodes.forEach(eventSession => {
+          schedule.push(
+            <div className="content-panel schedule-item">
+              <div className="item-info">
+                <div className="image">
+                  <img src={eventSession.myFields.speaker.fields.headshot.url} alt={eventSession.myFields.speaker.fields.name} />
+                  <p>
+                    <strong>{eventSession.myFields.speaker.fields.name}</strong>
+                    {eventSession.myFields.speaker.fields.companyName}
+                  </p>
+                </div>
+                
+      
+                <div className="info">
+                  <p className="time">
+                    <i className="fa fa-clock"></i>  
+                    {parseTime(eventSession.myFields.sessionStartTime)} 
+                    to {parseTime(eventSession.myFields.sessionEndTime)}
+                  </p>
+      
+                  <p className="title">{eventSession.myFields.topicTitle}</p>
+      
+                  <p dangerouslySetInnerHTML={this.renderHtmlContent(eventSession.myFields.topicDescription)}></p>
+                </div>
+
+              </div>
+            </div>
+          )
+        })
+
+        return schedule;
+    }
+
+  }
+
+  renderScheduleGroup() {
       console.log('schedule', this.props);
 
-      if (this.props.schedule != null) {
+      if (this.props.scheduleGroup != null) {
 
-          let schedule = [];
+          let scheduleGroup = [];
 
-          this.props.schedule.forEach(eventSession => {
-            schedule.push(
-              <div className="content-panel schedule-item">
-                <div className="item-info">
-                  <div className="image">
-                    <img src={eventSession.myFields.speaker.fields.headshot.url} alt={eventSession.myFields.speaker.fields.name} />
-                    <p>
-                      <strong>{eventSession.myFields.speaker.fields.name}</strong>
-                      {eventSession.myFields.speaker.fields.companyName}
-                    </p>
-                  </div>
-                  
-        
-                  <div className="info">
-                    <p className="time"><i className="fa fa-clock"></i> {eventSession.myFields.timeRange}</p>
-        
-                    <p className="title">{eventSession.myFields.topicTitle}</p>
-        
-                    <p dangerouslySetInnerHTML={this.renderHtmlContent(eventSession.myFields.topicDescription)}></p>
-                  </div>
-                </div>
+          this.props.scheduleGroup.forEach(eventSessionGroup => {
+            scheduleGroup.push(
+              <div className="event-session-groups">
+                <h4 className="session-group-title">
+                  Day {eventSessionGroup.nodes[0].myFields.sessionDay} Schedule
+                </h4>
+
+                {this.renderSchedule(eventSessionGroup)}
               </div>
             )
           })
 
-          return schedule;
+          return scheduleGroup;
       }
   }
 
@@ -94,7 +144,7 @@ class ScheduleList extends Component {
                     <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.title)}></span>
                 </h3>
 
-                {this.renderSchedule()}
+                {this.renderScheduleGroup()}
               </div>
             </div>
           </section>
