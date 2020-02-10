@@ -385,6 +385,10 @@ body select {
 .section-about .about-event .event-media {
   width: 40%;
 }
+.section-about .about-event .event-media img {
+  max-width: 100%;
+  height: auto;
+}
 .section-speakers {
   background: #4600a8;
   background: -moz-linear-gradient(0deg, #4600a8 0%, #5b009b 100%);
