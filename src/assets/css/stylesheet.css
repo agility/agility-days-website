@@ -433,11 +433,16 @@ body select {
   font-weight: bold;
 }
 .section-speakers .all-speakers .speaker-list ul li p:first-of-type {
-  margin-top: 5px;
+  margin: 5px 0;
+  line-height: 20px;
 }
 .section-speakers .all-speakers .speaker-list ul li p.title {
   font-weight: 300;
   font-size: 0.8em;
+  line-height: 16px;
+}
+.section-schedule .session-group-title {
+  margin: 40px 0 20px 0;
 }
 .section-schedule .schedule-item .item-info {
   display: flex;
@@ -463,6 +468,9 @@ body select {
   color: var(--grey);
   font-weight: bold;
   margin-bottom: 5px;
+}
+.section-schedule .schedule-item .item-info .info .time i {
+  margin-right: 5px;
 }
 .section-schedule .schedule-item .item-info .info .title {
   font-size: 1.25em;
@@ -727,6 +735,12 @@ body select {
 }
 /* Small Break */
 @media (max-width: 500px) {
+  .section-header .brand-nav .global-nav ul li {
+    margin-right: 8px;
+  }
+  .section-header .brand-nav .global-nav ul li a {
+    font-size: 0.9em;
+  }
   .section-schedule .schedule-item .item-info {
     flex-wrap: wrap;
     text-align: center;
