@@ -99,7 +99,7 @@ class SpeakersList extends Component {
                                 <h5>{this.state.currentSpeaker.myFields.name}</h5>
                                 <p className="title">{this.state.currentSpeaker.myFields.jobTitle} at {this.state.currentSpeaker.myFields.companyName}</p>
 
-                                <p dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.myFields.biography)}></p>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.myFields.biography)}></div>
 
                                 <button className="btn" title="Get Tickets">Get Tickets</button>
                                 </div>
