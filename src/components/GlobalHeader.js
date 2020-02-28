@@ -11,6 +11,8 @@ export default props => (
                     siteName
                     primaryContent
                     siteNavigation
+                    cTAText
+                    eventRef
                     primaryButton {
                         href
                         text
@@ -73,10 +75,10 @@ class GlobalHeader extends Component {
                                 <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.siteNavigation)}></div>
 
                                 <button
-                                    id="eventbrite-widget-modal-trigger-79568644959"
+                                    id="eventbrite-widget-modal-trigger-97206781099"
                                     className="btn"
                                 >
-                                    Buy Tickets
+                                    {this.props.item.myFields.cTAText}
                                 </button>
 
                             </nav>
@@ -86,7 +88,9 @@ class GlobalHeader extends Component {
                             <div className="content">
                                 <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.primaryContent)}></div>
 
-                                <button class="btn" id="example-widget-trigger-79568644959" type="button">{this.props.item.myFields.primaryButton.text}</button>
+                                <button class="btn" id="eventbrite-widget-modal-trigger-97206781099" type="button">
+                                    {this.props.item.myFields.cTAText}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -106,9 +110,9 @@ class GlobalHeader extends Component {
         
                 window.EBWidgets.createWidget({
                     widgetType: 'checkout',
-                    eventId: '79568644959',
+                    eventId: '97206781099',
                     modal: true,
-                    modalTriggerElementId: 'eventbrite-widget-modal-trigger-79568644959',
+                    modalTriggerElementId: 'eventbrite-widget-modal-trigger-97206781099',
                     onOrderComplete: exampleCallback
                 });
             }, 1000
