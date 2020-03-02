@@ -6,9 +6,9 @@ export default props => (
     <StaticQuery
         query = {graphql `
         query SpeakerListQuery {
-            allAgilityContentSpeaker {
+            allAgilitySpeaker {
                 nodes {
-                  myFields {
+                  customFields {
                     name
                     companyName
                     jobTitle
@@ -27,7 +27,7 @@ export default props => (
 
             const viewModel = {
                 item: props.item,
-                speakers: queryData.allAgilityContentSpeaker.nodes
+                speakers: queryData.allAgilitySpeaker.nodes
             }
             return(
                 <SpeakersList {...viewModel}/>  
@@ -68,13 +68,13 @@ class SpeakersList extends Component {
             this.props.speakers.forEach(speaker => {
                 speakers.push(
                     <li key={speaker.contentID} onClick={(e) => this.selectSpeaker(speaker, e)}>
-                        {speaker.myFields.headshot && 
-                            <img src={speaker.myFields.headshot.url} alt={speaker.myFields.name} />
+                        {speaker.customFields.headshot && 
+                            <img src={speaker.customFields.headshot.url} alt={speaker.customFields.name} />
                         }
                         <p>
-                            {speaker.myFields.name}
+                            {speaker.customFields.name}
                         </p>
-                        <p className="title">{speaker.myFields.companyName}</p>
+                        <p className="title">{speaker.customFields.companyName}</p>
                     </li>
                 )
             })
@@ -89,17 +89,17 @@ class SpeakersList extends Component {
                 <div className="container">
                     <div className="row">
                         <h3>
-                            <i className={this.props.item.fields.titleIcon}></i>
-                            <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.title)}></span>
+                            <i className={this.props.item.customFields.titleIcon}></i>
+                            <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.title)}></span>
                         </h3>
 
                         <div className="all-speakers">
                             <div className="speaker-info">
                                 <div className="inner">
-                                <h5>{this.state.currentSpeaker.myFields.name}</h5>
-                                <p className="title">{this.state.currentSpeaker.myFields.jobTitle} at {this.state.currentSpeaker.myFields.companyName}</p>
+                                <h5>{this.state.currentSpeaker.customFields.name}</h5>
+                                <p className="title">{this.state.currentSpeaker.customFields.jobTitle} at {this.state.currentSpeaker.customFields.companyName}</p>
 
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.myFields.biography)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.customFields.biography)}></div>
 
                                 <button className="btn" title="Get Tickets">Get Tickets</button>
                                 </div>

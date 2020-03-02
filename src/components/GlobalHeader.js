@@ -5,26 +5,19 @@ export default props => (
     <StaticQuery
         query={graphql`
         query GlobalHeaderQuery {
-            allAgilityContentGlobalHeader {
+            allAgilityGlobalHeader {
               nodes {
-                myFields {
+                customFields {
                     siteName
                     primaryContent
                     siteNavigation
-                    primaryButton {
-                        href
-                        text
-                    }
+                    cTAText
                     backgroundImage {
                         url
                     }
                     logo {
                         url
                         label
-                    }
-                    secondaryButton {
-                        href
-                        text
                     }
                 }
               }
@@ -33,7 +26,7 @@ export default props => (
         `}
         render={queryData => {
             const viewModel = {
-                item: queryData.allAgilityContentGlobalHeader.nodes[0]
+                item: queryData.allAgilityGlobalHeader.nodes[0]
             }
             return (
                 <GlobalHeader {...viewModel} />
@@ -51,7 +44,7 @@ class GlobalHeader extends Component {
         console.log('header', this.props);
 
         const headerStyle = {
-            backgroundImage: 'url(' + this.props.item.myFields.backgroundImage.url + ')'
+            backgroundImage: 'url(' + this.props.item.customFields.backgroundImage.url + ')'
         };
 
         return (
@@ -63,20 +56,20 @@ class GlobalHeader extends Component {
                         <div className="brand-nav">
                             <Link
                             to="/"
-                            title={this.props.item.myFields.siteName}
+                            title={this.props.item.customFields.siteName}
                             className="logo"
                             >
-                                <img src={this.props.item.myFields.logo.url} alt={this.props.item.myFields.siteName} />
+                                <img src={this.props.item.customFields.logo.url} alt={this.props.item.customFields.siteName} />
                             </Link>
 
                             <nav className="global-nav">
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.siteNavigation)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.siteNavigation)}></div>
 
                                 <button
-                                    id="eventbrite-widget-modal-trigger-79568644959"
+                                    id="eventbrite-widget-modal-trigger-97206781099"
                                     className="btn"
                                 >
-                                    Buy Tickets
+                                    {this.props.item.customFields.cTAText}
                                 </button>
 
                             </nav>
@@ -84,9 +77,11 @@ class GlobalHeader extends Component {
 
                         <div className="registration-cta">
                             <div className="content">
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.primaryContent)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.primaryContent)}></div>
 
-                                <button class="btn" id="example-widget-trigger-79568644959" type="button">{this.props.item.myFields.primaryButton.text}</button>
+                                <button className="btn" id="eventbrite-widget-modal-trigger-97206781099" type="button">
+                                    {this.props.item.customFields.cTAText}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -106,9 +101,9 @@ class GlobalHeader extends Component {
         
                 window.EBWidgets.createWidget({
                     widgetType: 'checkout',
-                    eventId: '79568644959',
+                    eventId: '97206781099',
                     modal: true,
-                    modalTriggerElementId: 'eventbrite-widget-modal-trigger-79568644959',
+                    modalTriggerElementId: 'eventbrite-widget-modal-trigger-97206781099',
                     onOrderComplete: exampleCallback
                 });
             }, 1000
