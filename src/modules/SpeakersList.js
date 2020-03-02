@@ -8,7 +8,7 @@ export default props => (
         query SpeakerListQuery {
             allAgilitySpeaker {
                 nodes {
-                  agilityFields {
+                  customFields {
                     name
                     companyName
                     jobTitle
@@ -68,13 +68,13 @@ class SpeakersList extends Component {
             this.props.speakers.forEach(speaker => {
                 speakers.push(
                     <li key={speaker.contentID} onClick={(e) => this.selectSpeaker(speaker, e)}>
-                        {speaker.agilityFields.headshot && 
-                            <img src={speaker.agilityFields.headshot.url} alt={speaker.agilityFields.name} />
+                        {speaker.customFields.headshot && 
+                            <img src={speaker.customFields.headshot.url} alt={speaker.customFields.name} />
                         }
                         <p>
-                            {speaker.agilityFields.name}
+                            {speaker.customFields.name}
                         </p>
-                        <p className="title">{speaker.agilityFields.companyName}</p>
+                        <p className="title">{speaker.customFields.companyName}</p>
                     </li>
                 )
             })
@@ -89,17 +89,17 @@ class SpeakersList extends Component {
                 <div className="container">
                     <div className="row">
                         <h3>
-                            <i className={this.props.item.agilityFields.titleIcon}></i>
-                            <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.title)}></span>
+                            <i className={this.props.item.customFields.titleIcon}></i>
+                            <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.title)}></span>
                         </h3>
 
                         <div className="all-speakers">
                             <div className="speaker-info">
                                 <div className="inner">
-                                <h5>{this.state.currentSpeaker.agilityFields.name}</h5>
-                                <p className="title">{this.state.currentSpeaker.agilityFields.jobTitle} at {this.state.currentSpeaker.agilityFields.companyName}</p>
+                                <h5>{this.state.currentSpeaker.customFields.name}</h5>
+                                <p className="title">{this.state.currentSpeaker.customFields.jobTitle} at {this.state.currentSpeaker.customFields.companyName}</p>
 
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.agilityFields.biography)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.state.currentSpeaker.customFields.biography)}></div>
 
                                 <button className="btn" title="Get Tickets">Get Tickets</button>
                                 </div>

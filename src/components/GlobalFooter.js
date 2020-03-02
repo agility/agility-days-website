@@ -7,7 +7,7 @@ export default props => (
         query GlobalFooterQuery {
             allAgilityGlobalFooter {
               nodes {
-                agilityFields {
+                customFields {
                   copyrightText,
                   logo {
                       url
@@ -39,9 +39,9 @@ class GlobalFooter extends Component {
             <footer className="section-footer">
                 <div className="container">
                     <div className="row">
-                        <p className="brand"><img src={this.props.item.agilityFields.logo.url} alt="Agility CMS" /></p>
-                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.socialLinks)}></div>
-                        <p>{this.props.item.agilityFields.copyrightText}</p>
+                        <p className="brand"><img src={this.props.item.customFields.logo.url} alt="Agility CMS" /></p>
+                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.socialLinks)}></div>
+                        <p>{this.props.item.customFields.copyrightText}</p>
                     </div>
                 </div>
             </footer>

@@ -362,18 +362,25 @@ body select {
 .section-about .about-event .event-info {
   width: 58%;
 }
+.section-about .about-event .event-info h3 {
+  margin: 0 0 15px 0;
+}
+.section-about .about-event .event-info p {
+  margin: 0 0 20px 0;
+}
 .section-about .about-event .event-info .cta {
-  margin-top: 15px;
+  margin-top: 25px;
   display: flex;
   align-items: center;
 }
-.section-about .about-event .event-info .cta button {
+.section-about .about-event .event-info .cta .btn {
   margin-right: 30px;
   min-width: 200px;
 }
 .section-about .about-event .event-info .cta .date-location {
   display: flex;
   align-items: center;
+  font-size: 0.9em;
 }
 .section-about .about-event .event-info .cta .date-location i {
   margin-right: 10px ;

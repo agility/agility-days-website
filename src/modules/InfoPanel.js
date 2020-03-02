@@ -12,29 +12,29 @@ export default class InfoPanel extends Component {
                 <div className="container">
                     <div className="row"> 
                         <h3>
-                            <i className={this.props.item.agilityFields.titleIcon}></i>
-                            <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.title)}></span>
+                            <i className={this.props.item.customFields.titleIcon}></i>
+                            <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.title)}></span>
                         </h3>
 
                         <div className="about-event">
                             <div className="event-info">
                                 <div className="content-panel">
-                                    <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.primaryContent)}></div>
+                                    <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.primaryContent)}></div>
                                 
                                     <div className="cta">
-                                        <button className="btn" href={this.props.item.agilityFields.primaryButton.href} title={this.props.item.agilityFields.primaryButton.text}>{this.props.item.agilityFields.primaryButton.text}</button>
+                                        <a className="btn" href={this.props.item.customFields.primaryButton.href} title={this.props.item.customFields.primaryButton.text}>{this.props.item.customFields.primaryButton.text}</a>
 
                                         <div className="date-location">
-                                            <i className={this.props.item.agilityFields.subContentIcon}></i>
-                                            <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.subContent)}></div>
+                                            <i className={this.props.item.customFields.subContentIcon}></i>
+                                            <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.subContent)}></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="event-media">
-                                { this.props.item.agilityFields.primaryImage.url && 
-                                    <div><img src={this.props.item.agilityFields.primaryImage.url} /></div>
+                                { this.props.item.customFields.primaryImage.url && 
+                                    <div><img src={this.props.item.customFields.primaryImage.url} /></div>
                                 }
                             </div>
                         </div>

@@ -7,7 +7,7 @@ class RichTextArea extends Component {
 
     }
     setHTML = () => {
-        return {__html: this.props.item.agilityFields.textblob};
+        return {__html: this.props.item.customFields.textblob};
     }
     render() {    
         const setHTML = this.setHTML();

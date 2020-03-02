@@ -7,7 +7,7 @@ export default props => (
         query GlobalHeaderQuery {
             allAgilityGlobalHeader {
               nodes {
-                agilityFields {
+                customFields {
                     siteName
                     primaryContent
                     siteNavigation
@@ -44,7 +44,7 @@ class GlobalHeader extends Component {
         console.log('header', this.props);
 
         const headerStyle = {
-            backgroundImage: 'url(' + this.props.item.agilityFields.backgroundImage.url + ')'
+            backgroundImage: 'url(' + this.props.item.customFields.backgroundImage.url + ')'
         };
 
         return (
@@ -56,20 +56,20 @@ class GlobalHeader extends Component {
                         <div className="brand-nav">
                             <Link
                             to="/"
-                            title={this.props.item.agilityFields.siteName}
+                            title={this.props.item.customFields.siteName}
                             className="logo"
                             >
-                                <img src={this.props.item.agilityFields.logo.url} alt={this.props.item.agilityFields.siteName} />
+                                <img src={this.props.item.customFields.logo.url} alt={this.props.item.customFields.siteName} />
                             </Link>
 
                             <nav className="global-nav">
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.siteNavigation)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.siteNavigation)}></div>
 
                                 <button
                                     id="eventbrite-widget-modal-trigger-97206781099"
                                     className="btn"
                                 >
-                                    {this.props.item.agilityFields.cTAText}
+                                    {this.props.item.customFields.cTAText}
                                 </button>
 
                             </nav>
@@ -77,10 +77,10 @@ class GlobalHeader extends Component {
 
                         <div className="registration-cta">
                             <div className="content">
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.primaryContent)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.primaryContent)}></div>
 
                                 <button class="btn" id="eventbrite-widget-modal-trigger-97206781099" type="button">
-                                    {this.props.item.agilityFields.cTAText}
+                                    {this.props.item.customFields.cTAText}
                                 </button>
                             </div>
                         </div>
