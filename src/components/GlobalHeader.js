@@ -79,7 +79,7 @@ class GlobalHeader extends Component {
                             <div className="content">
                                 <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.primaryContent)}></div>
 
-                                <button class="btn" id="eventbrite-widget-modal-trigger-97206781099" type="button">
+                                <button className="btn" id="eventbrite-widget-modal-trigger-97206781099" type="button">
                                     {this.props.item.customFields.cTAText}
                                 </button>
                             </div>

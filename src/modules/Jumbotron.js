@@ -17,9 +17,9 @@ export default class Jumbotron extends Component {
 
                         <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.customFields.primaryContent)}></div>
                         
-                        <button className="btn" href={this.props.item.customFields.primaryButton.url} title={this.props.item.customFields.primaryButton.title}>
+                        <a className="btn" href={this.props.item.customFields.primaryButton.href} title={this.props.item.customFields.primaryButton.title}>
                             {this.props.item.customFields.primaryButton.text}
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>
