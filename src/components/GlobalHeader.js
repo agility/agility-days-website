@@ -5,28 +5,19 @@ export default props => (
     <StaticQuery
         query={graphql`
         query GlobalHeaderQuery {
-            allAgilityContentGlobalHeader {
+            allAgilityGlobalHeader {
               nodes {
-                myFields {
+                agilityFields {
                     siteName
                     primaryContent
                     siteNavigation
                     cTAText
-                    eventRef
-                    primaryButton {
-                        href
-                        text
-                    }
                     backgroundImage {
                         url
                     }
                     logo {
                         url
                         label
-                    }
-                    secondaryButton {
-                        href
-                        text
                     }
                 }
               }
@@ -35,7 +26,7 @@ export default props => (
         `}
         render={queryData => {
             const viewModel = {
-                item: queryData.allAgilityContentGlobalHeader.nodes[0]
+                item: queryData.allAgilityGlobalHeader.nodes[0]
             }
             return (
                 <GlobalHeader {...viewModel} />
@@ -53,7 +44,7 @@ class GlobalHeader extends Component {
         console.log('header', this.props);
 
         const headerStyle = {
-            backgroundImage: 'url(' + this.props.item.myFields.backgroundImage.url + ')'
+            backgroundImage: 'url(' + this.props.item.agilityFields.backgroundImage.url + ')'
         };
 
         return (
@@ -65,20 +56,20 @@ class GlobalHeader extends Component {
                         <div className="brand-nav">
                             <Link
                             to="/"
-                            title={this.props.item.myFields.siteName}
+                            title={this.props.item.agilityFields.siteName}
                             className="logo"
                             >
-                                <img src={this.props.item.myFields.logo.url} alt={this.props.item.myFields.siteName} />
+                                <img src={this.props.item.agilityFields.logo.url} alt={this.props.item.agilityFields.siteName} />
                             </Link>
 
                             <nav className="global-nav">
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.siteNavigation)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.siteNavigation)}></div>
 
                                 <button
                                     id="eventbrite-widget-modal-trigger-97206781099"
                                     className="btn"
                                 >
-                                    {this.props.item.myFields.cTAText}
+                                    {this.props.item.agilityFields.cTAText}
                                 </button>
 
                             </nav>
@@ -86,10 +77,10 @@ class GlobalHeader extends Component {
 
                         <div className="registration-cta">
                             <div className="content">
-                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.primaryContent)}></div>
+                                <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.primaryContent)}></div>
 
                                 <button class="btn" id="eventbrite-widget-modal-trigger-97206781099" type="button">
-                                    {this.props.item.myFields.cTAText}
+                                    {this.props.item.agilityFields.cTAText}
                                 </button>
                             </div>
                         </div>

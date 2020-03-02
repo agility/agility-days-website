@@ -6,28 +6,34 @@ export default props => (
     <StaticQuery
         query = {graphql `
           query ScheduleQuery {
-            allAgilityContentEventSession(sort: {fields: myFields___sessionStartTime, order: ASC}) {
-              group(field: myFields___sessionDay) {
+            allAgilityEventSession(sort: {fields: agilityFields___sessionStartTime, order: ASC}) {
+              group(field: agilityFields___sessionDay) {
                 nodes {
                   id
-                  myFields {
+                  agilityFields {
                     timeRange
                     sessionDay
                     topicDescription
                     topicTitle
                     speaker {
-                      fields {
-                        companyName
-                        headshot {
-                          url
-                        }
-                        jobTitle
-                        name
-                      }
+                      contentid
                     }
                     sessionStartTime
                     sessionEndTime
                   }
+                }
+              }
+            },
+            allAgilitySpeaker {
+              nodes {
+                agilityFields {
+                  biography
+                  companyName
+                  headshot {
+                    url
+                  }
+                  jobTitle
+                  name
                 }
               }
             }
@@ -36,7 +42,7 @@ export default props => (
         render={queryData =>  {
             const viewModel = {
                 item: props.item,
-                scheduleGroup: queryData.allAgilityContentEventSession.group
+                scheduleGroup: queryData.allAgilityEventSession.group
             }
             return(
                 <ScheduleList {...viewModel}/>  
@@ -81,10 +87,10 @@ class ScheduleList extends Component {
             <div className="content-panel schedule-item">
               <div className="item-info">
                 <div className="image">
-                  <img src={eventSession.myFields.speaker.fields.headshot.url} alt={eventSession.myFields.speaker.fields.name} />
+                  <img src={eventSession.agilityFields.speaker.agilityFields.headshot.url} alt={eventSession.agilityFields.speaker.agilityFields.name} />
                   <p>
-                    <strong>{eventSession.myFields.speaker.fields.name}</strong>
-                    {eventSession.myFields.speaker.fields.companyName}
+                    <strong>{eventSession.agilityFields.speaker.agilityFields.name}</strong>
+                    {eventSession.agilityFields.speaker.agilityFields.companyName}
                   </p>
                 </div>
                 
@@ -92,13 +98,13 @@ class ScheduleList extends Component {
                 <div className="info">
                   <p className="time">
                     <i className="fa fa-clock"></i>  
-                    {parseTime(eventSession.myFields.sessionStartTime)} 
-                    to {parseTime(eventSession.myFields.sessionEndTime)}
+                    {parseTime(eventSession.agilityFields.sessionStartTime)} 
+                    to {parseTime(eventSession.agilityFields.sessionEndTime)}
                   </p>
       
-                  <p className="title">{eventSession.myFields.topicTitle}</p>
+                  <p className="title">{eventSession.agilityFields.topicTitle}</p>
       
-                  <div dangerouslySetInnerHTML={this.renderHtmlContent(eventSession.myFields.topicDescription)}></div>
+                  <div dangerouslySetInnerHTML={this.renderHtmlContent(eventSession.agilityFields.topicDescription)}></div>
                 </div>
 
               </div>
@@ -122,7 +128,7 @@ class ScheduleList extends Component {
             scheduleGroup.push(
               <div className="event-session-groups">
                 <h4 className="session-group-title">
-                  Day {eventSessionGroup.nodes[0].myFields.sessionDay} Schedule
+                  Day {eventSessionGroup.nodes[0].agilityFields.sessionDay} Schedule
                 </h4>
 
                 {this.renderSchedule(eventSessionGroup)}
@@ -140,8 +146,8 @@ class ScheduleList extends Component {
             <div className="container">
               <div className="row">
                 <h3>
-                    <i className={this.props.item.fields.titleIcon}></i>
-                    <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.fields.title)}></span>
+                    <i className={this.props.item.agilityFields.titleIcon}></i>
+                    <span dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.title)}></span>
                 </h3>
 
                 {this.renderScheduleGroup()}

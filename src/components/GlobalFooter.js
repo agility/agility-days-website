@@ -5,9 +5,9 @@ export default props => (
     <StaticQuery
         query={graphql`
         query GlobalFooterQuery {
-            allAgilityContentGlobalFooter {
+            allAgilityGlobalFooter {
               nodes {
-                myFields {
+                agilityFields {
                   copyrightText,
                   logo {
                       url
@@ -20,7 +20,7 @@ export default props => (
         `}
         render={queryData => {
             const viewModel = {
-                item: queryData.allAgilityContentGlobalFooter.nodes[0],
+                item: queryData.allAgilityGlobalFooter.nodes[0],
             }
             return (
                 <GlobalFooter {...viewModel} />
@@ -39,9 +39,9 @@ class GlobalFooter extends Component {
             <footer className="section-footer">
                 <div className="container">
                     <div className="row">
-                        <p className="brand"><img src={this.props.item.myFields.logo.url} alt="Agility CMS" /></p>
-                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.myFields.socialLinks)}></div>
-                        <p>{this.props.item.myFields.copyrightText}</p>
+                        <p className="brand"><img src={this.props.item.agilityFields.logo.url} alt="Agility CMS" /></p>
+                        <div dangerouslySetInnerHTML={this.renderHtmlContent(this.props.item.agilityFields.socialLinks)}></div>
+                        <p>{this.props.item.agilityFields.copyrightText}</p>
                     </div>
                 </div>
             </footer>
