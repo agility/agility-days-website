@@ -711,7 +711,7 @@ body select {
   .section-about .about-event .event-info .cta {
     flex-wrap: wrap;
   }
-  .section-about .about-event .event-info .cta button {
+  .section-about .about-event .event-info .cta .btn {
     margin-right: 0;
     order: 2;
     width: 100%;
@@ -724,6 +724,7 @@ body select {
   .section-about .about-event .event-media {
     width: 100%;
     order: 1;
+    margin-bottom: 20px;
   }
   .section-speakers {
     padding: 70px 0;
