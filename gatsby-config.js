@@ -41,5 +41,17 @@ module.exports = {
         masterPageTemplate: "./src/templates/AgilityPage.js", //the page template that will be used to render Agility CMS pages
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Agility Days Website`,
+        short_name: `agility-days-website`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/assets/images/agility-icon.png`, // This path is relative to the root of the site.
+      },
+    },
   ],
 }

@@ -151,7 +151,7 @@ body h2 {
   margin-bottom: 10px;
 }
 body h3 {
-  font-size: 1.5em;
+  font-size: 1.7em;
   margin-bottom: 10px;
 }
 body h4 {
@@ -217,12 +217,6 @@ body select {
 }
 .content-panel img {
   width: 100%;
-}
-.content-panel h2,
-.content-panel h3,
-.content-panel h4,
-.content-panel h5 {
-  margin: 10px 0 15px 0;
 }
 .content-panel p {
   line-height: 1.8em;
@@ -362,8 +356,10 @@ body select {
 .section-about .about-event .event-info {
   width: 58%;
 }
-.section-about .about-event .event-info h3 {
-  margin: 0 0 15px 0;
+.section-about .about-event .event-info h3,
+.section-about .about-event .event-info h4 {
+  margin: 20px 0 15px 0;
+  text-transform: inherit;
 }
 .section-about .about-event .event-info p {
   margin: 0 0 20px 0;
@@ -375,7 +371,7 @@ body select {
 }
 .section-about .about-event .event-info .cta .btn {
   margin-right: 30px;
-  min-width: 200px;
+  min-width: 140px;
 }
 .section-about .about-event .event-info .cta .date-location {
   display: flex;
